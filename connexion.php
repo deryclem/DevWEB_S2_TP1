@@ -17,6 +17,7 @@
 	if (!mysqli_set_charset($CONNEXION, 'UTF8')) {
     	echo 'Error loading character set UTF8: ', mysqli_connect_error(), "\n";
 	}
+	mysqli_query($CONNEXION,"SET lc_time_names = 'fr_FR'");
 
 
 ?>

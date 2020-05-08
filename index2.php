@@ -1,6 +1,6 @@
 <?php
 			require_once('connexion.php');
-			$requete = "SELECT *, DATE_FORMAT(date_sortie, '%d %M %Y') as date_sortie_fr FROM films";
+			$requete = "SELECT DATE_FORMAT(date_sortie, '%d %M %Y') as date_sortie_fr, affiche, id, titre, date_sortie, duree, note_presse, note_public FROM films";
 			$resultat = mysqli_query($CONNEXION,$requete);
 			if (!$resultat) {
 			echo "Erreur dans l'exécution de la requête, message de MySQL : ", mysqli_error($CONNEXION);

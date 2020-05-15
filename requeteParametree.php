@@ -7,7 +7,7 @@
 	<meta name="description" content="Cours de Syst&eacute;mes d'information 1, 
 		exemple de script PHP, requête dans une BD" />
 	<title>Requ&ecirc;te paramétrée dans une BD</title>
-	<link rel="stylesheet" href="<?php echo RACINE_WEB;?>style/site.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo RACINE_WEB; ?>style/site.css" type="text/css" />
 </head>
 <body>
 	<header>
@@ -32,12 +32,12 @@
 	require_once('connexion.php');
 	
 	if (!empty($_REQUEST['Nom']) || !empty($_REQUEST['Prenom'])) {
-		$nomCherche = empty($_REQUEST['Nom'])?'':$_REQUEST['Nom'];
-		$prenomCherche = empty($_REQUEST['Prenom'])?'':$_REQUEST['Prenom'];
+		$nomCherche = empty($_REQUEST['Nom']) ? '' : $_REQUEST['Nom'];
+		$prenomCherche = empty($_REQUEST['Prenom']) ? '' : $_REQUEST['Prenom'];
 		// Ajout du paramètre % pour recherche sur préfixe
-		$nomCherche .='%';
+		$nomCherche .= '%';
 		$prenomCherche .= '%';
-		$requete = mysqli_prepare($CONNEXION,'SELECT nom, prenom FROM etudiants WHERE nom LIKE ? AND prenom LIKE ?');
+		$requete = mysqli_prepare($CONNEXION, 'SELECT nom, prenom FROM etudiants WHERE nom LIKE ? AND prenom LIKE ?');
 		if (!$requete) {
 			echo "Erreur dans la préparation de la requête, message de MySQL : ", mysqli_error($CONNEXION);
 			exit();

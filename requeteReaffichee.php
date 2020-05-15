@@ -13,7 +13,7 @@
 	<header>
 	<h1>Requ&ecirc;te réaffichée dans le formulaire</h1>
 <?php
-    // on récupère les paramètres AVANT d'afficher le formulaire !
+	// on récupère les paramètres AVANT d'afficher le formulaire !
 	$nomCherche = empty($_REQUEST['Nom'])?'':$_REQUEST['Nom'];
 	$prenomCherche = empty($_REQUEST['Prenom'])?'':$_REQUEST['Prenom'];
 ?>
@@ -24,8 +24,8 @@
 	<form action="?" method="get">
 	<div>
 		<!-- on affiche les paramètres dans les value du formulaire -->
-		<label>Prénom : <input type="text" name="Prenom" value="<?php echo $prenomCherche;?>"/></label><br/>
-		<label>Nom : <input type="text" name="Nom"  value="<?php echo $nomCherche;?>"/></label><br/>
+		<label>Prénom : <input type="text" name="Prenom" value="<?php echo $prenomCherche; ?>"/></label><br/>
+		<label>Nom : <input type="text" name="Nom"  value="<?php echo $nomCherche; ?>"/></label><br/>
 		<input type="submit" value="Envoyer"/>
 	</div>
 	</form>
@@ -38,7 +38,7 @@
 	if (!empty($nomCherche) || !empty($prenomCherche)) {
 		$nomCherche .= '%';
 		$prenomCherche .= '%';
-		$requete = mysqli_prepare($CONNEXION,'SELECT nom, prenom FROM etudiants WHERE nom LIKE ? AND prenom LIKE ?');
+		$requete = mysqli_prepare($CONNEXION, 'SELECT nom, prenom FROM etudiants WHERE nom LIKE ? AND prenom LIKE ?');
 		if (!$requete) {
 			echo "Erreur dans la préparation de la requête, message de MySQL : ", mysqli_error($CONNEXION);
 			exit();

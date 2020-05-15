@@ -7,7 +7,7 @@
 	<meta name="description" content="Cours de Syst&eacute;mes d'information 1, 
 		exemple de script PHP, requête dans une BD" />
 	<title>Requ&ecirc;te dans une base de donn&eacute;es</title>
-	<link rel="stylesheet" href="<?php echo RACINE_WEB;?>style/site.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo RACINE_WEB; ?>style/site.css" type="text/css" />
 </head>
 <body>
 	<header>
@@ -20,8 +20,8 @@
 	require_once('connexion.php');
 	$requete = 'SELECT nom, prenom FROM etudiants';
 	// pour debug : 
-	echo 'Requete SQL: ',$requete,"<br/>\n";
-	$resultat = mysqli_query($CONNEXION,$requete);
+	echo 'Requete SQL: ', $requete, "<br/>\n";
+	$resultat = mysqli_query($CONNEXION, $requete);
 	if (!$resultat) {
 		echo "Erreur dans l'exécution de la requête, message de MySQL : ", mysqli_error($CONNEXION);
 		exit();
@@ -29,8 +29,8 @@
 	$nombreEtudiants = mysqli_num_rows($resultat);
 	echo '<p>Il y a ', $nombreEtudiants, ' étudiants dans cette promo :</p>';
 	// objet
-	while ($etudiant = mysqli_fetch_assoc ($resultat)) {
-		echo 'Nom : ',$etudiant['nom'],' prénom : ',$etudiant['prenom']," <br/>\n";
+	while ($etudiant = mysqli_fetch_assoc($resultat)) {
+		echo 'Nom : ', $etudiant['nom'], ' prénom : ', $etudiant['prenom'], " <br/>\n";
 	} 
 
 	// fermeture de la connexion

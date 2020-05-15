@@ -7,7 +7,7 @@
 	<meta name="description" content="Cours de Syst&eacute;mes d'information 1, 
 		exemple de script PHP, mise à jour dans une BD" />
 	<title>Ajout dans une BD</title>
-	<link rel="stylesheet" href="<?php echo RACINE_WEB;?>style/site.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo RACINE_WEB; ?>style/site.css" type="text/css" />
 </head>
 <body>
 	<header>
@@ -34,7 +34,7 @@
 		!empty($_REQUEST['Nom']) && 
 		!empty($_REQUEST['Prenom'])) {
 		
-		$requete = mysqli_prepare($CONNEXION,'INSERT INTO etudiants (nom, prenom) VALUES (? , ?)');
+		$requete = mysqli_prepare($CONNEXION, 'INSERT INTO etudiants (nom, prenom) VALUES (? , ?)');
 		if (!$requete) {
 			echo "Erreur dans la préparation de la requête, message de MySQL : ", mysqli_error($CONNEXION);
 			exit();
@@ -45,7 +45,7 @@
 			echo "Erreur dans l'exécution de la requête, message de MySQL : ", mysqli_stmt_error($requete);
 			exit();
 		}
-		echo '<p>Ajout de nom : ',  $_REQUEST["Nom"], ' prénom ', $_REQUEST['Prenom'], '</p>';
+		echo '<p>Ajout de nom : ', $_REQUEST["Nom"], ' prénom ', $_REQUEST['Prenom'], '</p>';
 	}
 
 	// fermeture de la connexion

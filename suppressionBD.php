@@ -7,7 +7,7 @@
 	<meta name="description" content="Cours de Syst&eacute;mes d'information 1, 
 		exemple de script PHP, mise à jour dans une BD" />
 	<title>Suppression dans une BD</title>
-	<link rel="stylesheet" href="<?php echo RACINE_WEB;?>style/site.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo RACINE_WEB; ?>style/site.css" type="text/css" />
 </head>
 <body>
 	<header>
@@ -31,12 +31,12 @@
 		
 	// Rechercher
 	if (!empty($_REQUEST['Rechercher'])) {
-		$nom = empty($_REQUEST['Nom'])?'':$_REQUEST['Nom'];
-		$prenom = empty($_REQUEST['Prenom'])?'':$_REQUEST['Prenom'];
+		$nom = empty($_REQUEST['Nom']) ? '' : $_REQUEST['Nom'];
+		$prenom = empty($_REQUEST['Prenom']) ? '' : $_REQUEST['Prenom'];
 		// Ajout du paramètre % pour recherche sur préfixe
-		$nom .='%';
+		$nom .= '%';
 		$prenom .= '%';
-		$requete = mysqli_prepare($CONNEXION,'SELECT numero, nom, prenom FROM etudiants WHERE nom LIKE ? AND prenom LIKE ?');
+		$requete = mysqli_prepare($CONNEXION, 'SELECT numero, nom, prenom FROM etudiants WHERE nom LIKE ? AND prenom LIKE ?');
 		if (!$requete) {
 			echo "Erreur dans la préparation de la requête, message de MySQL : ", mysqli_error($CONNEXION);
 			exit();

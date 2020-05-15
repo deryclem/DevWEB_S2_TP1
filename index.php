@@ -24,6 +24,20 @@
 				return $retour;
 			}
 
+			function acteurs_id($CONNEXION, $id_film){
+				$requete = "SELECT id_personne FROM acteurs where id_film=$id_film";
+				$resultat = mysqli_query($CONNEXION,$requete);
+				if (!$resultat) {
+					echo "Erreur dans l'exécution de la requête, message de MySQL : ",
+					mysqli_error($CONNEXION);
+					exit();
+				}
+				$retour = "";
+				while ($ligne = mysqli_fetch_assoc ($resultat)) {
+					$retour .= $ligne['id_personne']." ";
+				}
+				return $retour;
+			}
 
 			function realisateurs_prenom_nom($CONNEXION, $id_film)
 			{
@@ -95,15 +109,15 @@
 				  </tr>
 					<tr>
 				    <td style='color:grey'>Réalisateur</td>
-				    <td>",realisateurs_prenom_nom($CONNEXION, $ligne['id']),"</td>
+				    <td><a href='personne.php?id=",realisateurs_id($CONNEXION, $ligne['id']),"'>",realisateurs_prenom_nom($CONNEXION, $ligne['id']),"</a></td>
 				  </tr>
 					<tr>
 				    <td style='color:grey'>Avec</td>
-				    <td>",acteurs_prenom_nom($CONNEXION, $ligne['id']),"</td>
+				    <td><a href='personne.php?id=",acteurs_id($CONNEXION, $ligne['id']),"'>",substr(acteurs_prenom_nom($CONNEXION, $ligne['id']), 0, -2),"</td>
 				  </tr>
 					<tr>
 				    <td style='color:grey'>Genres</td>
-				    <td>",genres($CONNEXION, $ligne['id']),"</td>
+				    <td>",substr(genres($CONNEXION, $ligne['id']),0, -2),"</td>
 				  </tr>
 				  <tr>
 				    <td style='color:grey'>Presse</td>

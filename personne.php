@@ -9,7 +9,7 @@ $id = intval($_GET['id']);
 $rowcount = 1;
 
 $requete = "SELECT *, DATE_FORMAT(date_naissance, '%d %M %Y') as date_naissance_fr FROM personnes WHERE ID = ".$id;
-$resultat = mysqli_query($CONNEXION,$requete);
+$resultat = mysqli_query($CONNEXION, $requete);
 if (!$resultat) {
 echo "Erreur dans l'exécution de la requête, message de MySQL : ", mysqli_error($CONNEXION);
 exit();
@@ -20,13 +20,13 @@ function filmsRealisesTitre($CONNEXION, $id)
   $requete = "SELECT titre FROM films INNER JOIN staff ON staff.id_film = films.id AND staff.id_personne = $id";
   $resultat = mysqli_query($CONNEXION,$requete);
   if (!$resultat) {
-    echo "Erreur dans l'exécution de la requête, message de MySQL : ",
-    mysqli_error($CONNEXION);
-    exit();
+	echo "Erreur dans l'exécution de la requête, message de MySQL : ",
+	mysqli_error($CONNEXION);
+	exit();
   }
   $retour = "";
   while ($infos = mysqli_fetch_assoc ($resultat)) {
-    $retour .= $infos['titre'];
+	$retour .= $infos['titre'];
   }
   return $retour;
 }
@@ -36,13 +36,13 @@ function filmsRealisesDate($CONNEXION, $id)
   $requete = "SELECT date_sortie FROM films INNER JOIN staff ON staff.id_film = films.id AND staff.id_personne = $id";
   $resultat = mysqli_query($CONNEXION,$requete);
   if (!$resultat) {
-    echo "Erreur dans l'exécution de la requête, message de MySQL : ",
-    mysqli_error($CONNEXION);
-    exit();
+	echo "Erreur dans l'exécution de la requête, message de MySQL : ",
+	mysqli_error($CONNEXION);
+	exit();
   }
   $retour = "";
   while ($infos = mysqli_fetch_assoc ($resultat)) {
-    $retour .= $infos['date_sortie'];
+	$retour .= $infos['date_sortie'];
   }
   return $retour;
 }
@@ -52,13 +52,13 @@ function filmsJouesDate($CONNEXION, $id)
   $requete = "SELECT date_sortie FROM films INNER JOIN acteurs ON acteurs.id_film = films.id AND acteurs.id_personne = $id";
   $resultat = mysqli_query($CONNEXION,$requete);
   if (!$resultat) {
-    echo "Erreur dans l'exécution de la requête, message de MySQL : ",
-    mysqli_error($CONNEXION);
-    exit();
+	echo "Erreur dans l'exécution de la requête, message de MySQL : ",
+	mysqli_error($CONNEXION);
+	exit();
   }
   $retour = "";
   while ($infos = mysqli_fetch_assoc ($resultat)) {
-    $retour .= $infos['date_sortie'];
+	$retour .= $infos['date_sortie'];
   }
   return $retour;
 }
@@ -67,7 +67,7 @@ while ($infos = mysqli_fetch_assoc ($resultat)) {
   $aujourdhui = date("Y-m-d");
   $diff = date_diff(date_create($infos['date_naissance']), date_create($aujourdhui));
 
-    echo "
+	echo "
 
           <h1>",$infos['prenom']," ",$infos['nom']," </h1>
           <table>
@@ -108,12 +108,12 @@ if (!empty(filmsJouesDate($CONNEXION, $infos['id']))) {
       <th>Role</td>
     </tr>";
 
-    $requete = "SELECT * FROM films INNER JOIN acteurs ON acteurs.id_film = films.id AND acteurs.id_personne = $id";
-    $resultat = mysqli_query($CONNEXION,$requete);
-    if (!$resultat) {
-    echo "Erreur dans l'exécution de la requête, message de MySQL : ", mysqli_error($CONNEXION);
-    exit();
-    }
+	$requete = "SELECT * FROM films INNER JOIN acteurs ON acteurs.id_film = films.id AND acteurs.id_personne = $id";
+	$resultat = mysqli_query($CONNEXION,$requete);
+	if (!$resultat) {
+	echo "Erreur dans l'exécution de la requête, message de MySQL : ", mysqli_error($CONNEXION);
+	exit();
+	}
 
 while ($ligne = mysqli_fetch_assoc ($resultat)) {
   echo "

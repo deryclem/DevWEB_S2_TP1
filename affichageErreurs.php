@@ -16,7 +16,7 @@
 			include("fichierNonExistant.php");
 			// Faire une recherche 
 			if (isset($submit) && isset($recherche)) {
-				echo "<p>J'ai fait une recherche ", $prenom, " ", $nom , "</p>\n";	
+				echo "<p>J'ai fait une recherche ", $prenom, " ", $nom, "</p>\n";	
 			}
 			echo '
 			<form action="rechercheIntegree.php" method="get">

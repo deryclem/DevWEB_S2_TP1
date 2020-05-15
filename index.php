@@ -1,7 +1,7 @@
 <?php
 			require_once('connexion.php');
 			$requete = "SELECT DATE_FORMAT(date_sortie, '%d %M %Y') as date_sortie_fr,  affiche, id, titre, date_sortie, duree, note_presse, note_public FROM films";
-			$resultat = mysqli_query($CONNEXION,$requete);
+			$resultat = mysqli_query($CONNEXION, $requete);
 			if (!$resultat) {
 			echo "Erreur dans l'exécution de la requête, message de MySQL : ", mysqli_error($CONNEXION);
 			exit();
@@ -9,31 +9,31 @@
 
 			//Retourne dans une chaine de caractères
 			//l'identifiant du ou des réalisateurs du film $id_film
-			function realisateurs_id($CONNEXION, $id_film){
+			function realisateurs_id($CONNEXION, $id_film) {
 				$requete = "SELECT id_personne FROM staff where id_film=$id_film AND id_fonction=1";
-				$resultat = mysqli_query($CONNEXION,$requete);
+				$resultat = mysqli_query($CONNEXION, $requete);
 				if (!$resultat) {
 					echo "Erreur dans l'exécution de la requête, message de MySQL : ",
 					mysqli_error($CONNEXION);
 					exit();
 				}
 				$retour = "";
-				while ($ligne = mysqli_fetch_assoc ($resultat)) {
+				while ($ligne = mysqli_fetch_assoc($resultat)) {
 					$retour .= $ligne['id_personne']." ";
 				}
 				return $retour;
 			}
 
-			function acteurs_id($CONNEXION, $id_film){
+			function acteurs_id($CONNEXION, $id_film) {
 				$requete = "SELECT id_personne FROM acteurs where id_film=$id_film";
-				$resultat = mysqli_query($CONNEXION,$requete);
+				$resultat = mysqli_query($CONNEXION, $requete);
 				if (!$resultat) {
 					echo "Erreur dans l'exécution de la requête, message de MySQL : ",
 					mysqli_error($CONNEXION);
 					exit();
 				}
 				$retour = "";
-				while ($ligne = mysqli_fetch_assoc ($resultat)) {
+				while ($ligne = mysqli_fetch_assoc($resultat)) {
 					$retour .= $ligne['id_personne']." ";
 				}
 				return $retour;
@@ -42,14 +42,14 @@
 			function realisateurs_prenom_nom($CONNEXION, $id_film)
 			{
 				$requete = "SELECT prenom, nom FROM personnes INNER JOIN staff ON personnes.id = staff.id_personne AND staff.id_film = $id_film";
-				$resultat = mysqli_query($CONNEXION,$requete);
+				$resultat = mysqli_query($CONNEXION, $requete);
 				if (!$resultat) {
 					echo "Erreur dans l'exécution de la requête, message de MySQL : ",
 					mysqli_error($CONNEXION);
 					exit();
 				}
 				$retour = "";
-				while ($ligne = mysqli_fetch_assoc ($resultat)) {
+				while ($ligne = mysqli_fetch_assoc($resultat)) {
 					$retour .= $ligne['prenom']." ".$ligne['nom'];
 				}
 				return $retour;
@@ -58,14 +58,14 @@
 			function genres($CONNEXION, $id_film)
 			{
 				$requete = "SELECT nom FROM genres INNER JOIN genres_films ON genres.id = genres_films.id_genre AND genres_films.id_film = $id_film";
-				$resultat = mysqli_query($CONNEXION,$requete);
+				$resultat = mysqli_query($CONNEXION, $requete);
 				if (!$resultat) {
 					echo "Erreur dans l'exécution de la requête, message de MySQL : ",
 					mysqli_error($CONNEXION);
 					exit();
 				}
 				$retour = "";
-				while ($ligne = mysqli_fetch_assoc ($resultat)) {
+				while ($ligne = mysqli_fetch_assoc($resultat)) {
 					$retour .= $ligne['nom'].", ";
 				}
 				return $retour;
@@ -74,14 +74,14 @@
 			function acteurs_prenom_nom($CONNEXION, $id_film)
 			{
 				$requete = "SELECT prenom, nom FROM personnes INNER JOIN acteurs ON personnes.id = acteurs.id_personne AND acteurs.id_film = $id_film";
-				$resultat = mysqli_query($CONNEXION,$requete);
+				$resultat = mysqli_query($CONNEXION, $requete);
 				if (!$resultat) {
 					echo "Erreur dans l'exécution de la requête, message de MySQL : ",
 					mysqli_error($CONNEXION);
 					exit();
 				}
 				$retour = "";
-				while ($ligne = mysqli_fetch_assoc ($resultat)) {
+				while ($ligne = mysqli_fetch_assoc($resultat)) {
 					$retour .= $ligne['prenom']." ".$ligne['nom'].", ";
 				}
 				return $retour;
@@ -94,7 +94,7 @@
 			while ($ligne = mysqli_fetch_assoc ($resultat)) {
 
 				$heures=intval($ligne['duree'] / 60);
-	      $minutes=intval(($ligne['duree'] % 60));
+		  $minutes=intval(($ligne['duree'] % 60));
 				echo "
 				<br>
 				<table>
